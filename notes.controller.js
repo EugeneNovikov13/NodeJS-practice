@@ -5,11 +5,6 @@ const chalk = require('chalk')
 const notesPath = path.join(__dirname, 'db.json')
 
 async function addNote(title) {
-    // const notes = require('./db.json')
-    // const buffer = await fs.readFile(notesPath)
-    // const notes = Buffer.from(buffer).toString('utf-8')
-
-    // const notes = await fs.readFile(notesPath, {encoding: 'utf-8'})
     const notes = await getNotes()
 
     const note = {
@@ -49,5 +44,5 @@ async function printNotes() {
 }
 
 module.exports = {
-    addNote, printNotes, removeNote
+    addNote, printNotes, removeNote, getNotes
 }

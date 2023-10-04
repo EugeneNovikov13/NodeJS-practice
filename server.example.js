@@ -1,6 +1,6 @@
 const server = http.createServer(async (req, res) => {
     if (req.method === 'GET') {
-        const content = await fs.readFile(path.join(basePath, 'index.html'))
+        const content = await fs.readFile(path.join(basePath, 'index.ejs'))
         // res.setHeader('Content-Type', 'text/html')
         res.writeHead(200, {
             'Content-Type': 'text/html',
