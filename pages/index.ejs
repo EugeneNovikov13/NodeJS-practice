@@ -14,8 +14,9 @@
 <div class="container">
 
     <% if (created) { %>
-        <div class="alert alert-success">
-            Note has been created
+        <div class="alert alert-success d-flex justify-content-between">
+            <p>Note has been created</p>
+            <button class="btn btn-success" data-type="remove-alert">&times;</button>
         </div>
     <% } %>
 
@@ -33,9 +34,11 @@
             <ul class="list-group">
                 <% for (let i = 0; i < notes.length; i++ ) { %>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <%= notes[i].title %>
-
-                        <button class="btn btn-danger" data-type="remove" data-id="<%= notes[i].id %>">&times;</button>
+                        <p><%= notes[i].title %></p>
+                        <div class="buttons" data-id="<%= notes[i].id %>">
+                            <button class="btn btn-primary" data-type="edit">Редактировать</button>
+                            <button class="btn btn-danger" data-type="remove">&times;</button>
+                        </div>
                     </li>
                 <% } %>
             </ul>
