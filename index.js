@@ -15,10 +15,10 @@ app.use(express.urlencoded({
     extended: true,
 }))
 
-const renderOptions = async (isCreated = false) => ({
+const renderOptions = async () => ({
     title: 'Express App',
     notes: await getNotes(),
-    created: isCreated,
+    created: false,
 })
 
 const renderHTML = (response, options) => {
@@ -31,7 +31,7 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
     await addNote(req.body.title)
-    renderHTML(res, await renderOptions(true))
+    renderHTML(res, {...await renderOptions(), created: true})
 })
 
 app.put('/:id', async (req, res) => {

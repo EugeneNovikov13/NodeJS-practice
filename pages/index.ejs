@@ -33,10 +33,10 @@
         <div class="card">
             <ul class="list-group">
                 <% for (let i = 0; i < notes.length; i++ ) { %>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" data-id="<%= notes[i].id %>">
                         <p><%= notes[i].title %></p>
-                        <div class="buttons" data-id="<%= notes[i].id %>">
-                            <button class="btn btn-primary" data-type="edit">Редактировать</button>
+                        <div class="buttons">
+                            <button class="btn btn-primary" data-type="update">Обновить</button>
                             <button class="btn btn-danger" data-type="remove">&times;</button>
                         </div>
                     </li>
