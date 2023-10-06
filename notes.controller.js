@@ -5,11 +5,6 @@ const chalk = require('chalk')
 const notesPath = path.join(__dirname, 'db.json')
 
 async function addNote(title) {
-    // const notes = require('./db.json')
-    // const buffer = await fs.readFile(notesPath)
-    // const notes = Buffer.from(buffer).toString('utf-8')
-
-    // const notes = await fs.readFile(notesPath, {encoding: 'utf-8'})
     const notes = await getNotes()
 
     const note = {
@@ -21,6 +16,15 @@ async function addNote(title) {
 
     await fs.writeFile(notesPath, JSON.stringify(notes))
     console.log(chalk.green.inverse('Note was added!'))
+}
+
+async function editNote(newTitle, id) {
+    const notes = await getNotes()
+
+    const newNotes = notes.map(note => note.id === id ? {...note, title: newTitle} : note)
+
+    await fs.writeFile(notesPath, JSON.stringify(newNotes))
+    console.log(chalk.red('Note was edited!'))
 }
 
 async function removeNote(id) {
@@ -49,5 +53,5 @@ async function printNotes() {
 }
 
 module.exports = {
-    addNote, printNotes, removeNote
+    addNote, editNote, printNotes, removeNote
 }
