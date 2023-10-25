@@ -7,11 +7,16 @@ const {addNote, getNotes, removeNote, editNote} = require('./notes.controller')
 const port = 3000
 const app = express()
 
+//указываем каким шаблонизатором мы пользуемся
 app.set('view engine', 'ejs')
+//задаём папку, где лежит index.ejs. По умолчанию ищет в папке views
 app.set('views', 'pages')
 
+//обозначаем папку public как папку для статических файлов
 app.use(express.static(path.resolve(__dirname, 'public')))
+//Для того, чтобы была возможность отправлять на сервер данные в формате JSON
 app.use(express.json())
+//позволяет разбирать вложенные объекты в данных, закодированных в URL
 app.use(express.urlencoded({
     extended: true,
 }))
@@ -55,7 +60,7 @@ app.delete('/:id', async (req, res) => {
 })
 
 mongoose.connect(
-    'mongodb+srv://jugin0506:Gfhjkm13!mdb@cluster0.n3welcu.mongodb.net/notes?retryWrites=true&w=majority'
+    'mongodb+srv://NovikovEugene:gfhjkm13@educationdb.nioilpj.mongodb.net/notes?retryWrites=true&w=majority'
 ).then(() => {
     app.listen(port, () => {
         console.log(chalk.green(`Server has been started on port ${port}`))
