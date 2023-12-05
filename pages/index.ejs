@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<%- include('./partials/user-header') %>
+
 <div class="container">
 
     <% if (created) { %>
@@ -43,10 +45,13 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center"
                         data-id="<%= notes[i].id %>">
                         <p><%= notes[i].title %></p>
-                        <div class="buttons">
-                            <button class="btn btn-primary" data-type="update">Обновить</button>
-                            <button class="btn btn-danger" data-type="remove">&times;</button>
-                        </div>
+                        <p><%= notes[i].owner %></p>
+                        <% if (notes[i].owner === userEmail) { %>
+                            <div class="buttons">
+                                <button class="btn btn-primary" data-type="update">Обновить</button>
+                                <button class="btn btn-danger" data-type="remove">&times;</button>
+                            </div>
+                        <% } %>
                     </li>
                 <% } %>
             </ul>

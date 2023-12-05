@@ -1,0 +1,23 @@
+const mongoose = require('mongoose');
+const validator = require('validator');
+
+const UserSchema = mongoose.Schema({
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        validate: {
+            //встроенной валидации нет, пользуемся дополнительным пакетом validator
+            validator: validator.isEmail,
+            message: 'Invalid email',
+        }
+    },
+    password: {
+        type: String,
+        required: true,
+    }
+})
+
+const User = mongoose.model('User', UserSchema)
+
+module.exports = User
