@@ -1,7 +1,6 @@
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {JWT_SECRET} = require("../constants");
 
 
 async function addUser(email, password) {
@@ -14,6 +13,8 @@ async function addUser(email, password) {
 }
 
 async function loginUser(email, password) {
+    const JWT_SECRET = process.env.JWT_SECRET;
+
     const user = await User.findOne({email})
 
     if (!user) {

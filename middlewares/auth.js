@@ -1,8 +1,9 @@
 //функция проверяет jwt токен, полученный в куках в заголовке запроса
 const jwt = require("jsonwebtoken");
-const {JWT_SECRET} = require("../constants");
 
 function auth(req, res, next) {
+    const JWT_SECRET = process.env.JWT_SECRET;
+
     const token = req.cookies.token;
 
     try {

@@ -135,7 +135,7 @@ app.delete('/:id', async (req, res) => {
 })
 
 mongoose.connect(
-    'mongodb+srv://NovikovEugene:gfhjkm13@educationdb.nioilpj.mongodb.net/notes?retryWrites=true&w=majority'
+    process.env.DB_CONNECTION_STRING
 ).then(() => {
     app.listen(port, () => {
         console.log(chalk.green(`Server has been started on port ${port}`))
